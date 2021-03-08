@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,4 +10,88 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+/*font-family: 'Livvic', sans-serif;
+font-family: 'Ribeye', cursive;
+font-family: 'Yanone Kaffeesatz', sans-serif;*/
+
+/***************************
+****************************
+Base Styles
+****************************
+***************************/
+
+:root {
+  --pink: #ff99c8;
+  --yellow: #fcf6bd;
+  --green: #d0f4de;
+  --blue: #a9def9;
+  --purple: #e4c1f9;
+}
+
+.logo{
+  font-family: 'Livvic', sans-serif;
+  font-size:30px;
+  font-weight: bold;
+}
+.nav-items{
+  font-family: 'Livvic', sans-serif;
+}
+
+
+
+/***************************
+****************************
+Layout Styles
+****************************
+***************************/
+
+
+
+/***************************
+****************************
+Screen Compatibility
+****************************
+***************************/
+
+
+/******
+X-Small devices (mobile phones, less than 640px)
+*******/
+@media (max-width: 640px) {
+  
+.container{
+  display: grid;
+  height: 25vh;
+  grid-template-columns: 1fr; 
+  grid-template-rows: 8vh 5vh 5vh 5vh;
+  text-align: center;  
+}
+
+.logo{
+  grid-row: 1/2;
+}
+
+.nav-item1{
+  grid-row: 2/3;
+}
+
+.nav-item2{
+  grid-row: 3/4;
+}
+
+.nav-item3{
+  grid-row: 4/5;
+}
+
+}
+
+/******
+// Small devices upto Large devices
+******/
+
+@media (min-width: 640px){
+ 
+
+
 }

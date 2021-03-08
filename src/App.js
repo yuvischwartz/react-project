@@ -15,24 +15,37 @@ import Todos from "./Todos.js";
 import Contact from "./Contact.js";
 
 function Home() {
-  return <h2>Welcome to my app</h2>;
+  return (
+    <div >
+      <h2>Welcome to my app</h2>
+    </div>
+  );
 }
 
 function App() {
   return (
-   <Router>
+    <Router>
       <div>
-          <ul className={'text-center bg-gray-500 '}>
-              <li className={'inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
+
+      <div className={'bg-gray-700'}>
+      
+        <ul className={'container'}>
+            <li className={'logo inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
+            <i class="logo-icon fas fa-check-double"></i>
+              TodoList
+              </li>
+              <li className={'nav-item1 nav-items inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
                 <Link to="/about">About</Link>
               </li>  
-              <li className={'inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
+              <li className={'nav-item2 nav-items inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
                 <Link to="/todos">Todos</Link>
               </li>
-              <li className={'inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
+              <li className={'nav-item3 nav-items inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>
                 <Link to="/contact">Contact</Link>
               </li>
-          </ul>
+              
+        </ul>
+      </div>
         
         <Switch>
             <Route path="/about">
