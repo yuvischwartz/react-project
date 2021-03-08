@@ -23,11 +23,12 @@ function Home() {
 }
 
 function App() {
+  
   return (
     <Router>
       <div>
 
-      <div className={'bg-gray-700'}>
+      <div className={'bg-gray-900'}>
       
         <ul className={'container'}>
             <li className={'logo inline-block p-5 text-white text-xl cursor-pointer tracking-widest pl-10 pr-10'}>

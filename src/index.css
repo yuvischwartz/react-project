@@ -33,9 +33,15 @@ Base Styles
   font-family: 'Livvic', sans-serif;
   font-size:30px;
   font-weight: bold;
+  
+
 }
 .nav-items{
   font-family: 'Livvic', sans-serif;
+  
+}
+.logo-icon{
+color:white;
 }
 
 
