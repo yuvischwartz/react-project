@@ -7,13 +7,13 @@ export default function Todos(props) {
     return (
         <div className={'m-10 p-5 border'}>
             TODOS
-            <Add listType="todos" />
+            <Add />
             <br />
             CALLES
-            <Add listType="todos" />
+            <Add />
             <br />
             NOTES
-           <Add listType="todos" />               
+           <Add />               
         </div>
     );
 }
