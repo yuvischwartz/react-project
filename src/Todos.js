@@ -6,7 +6,10 @@ export default function Todos(props) {
     const [list, setList] = useState([]);
 
     function handleAddClick() {
-        setList([...list,input]);  
+        if (input.trim().length > 0)  {
+            setList([...list, input]);
+            setInput("");
+        }
     }
 
     return (
@@ -15,7 +18,11 @@ export default function Todos(props) {
                 className={'border'} />
             <button onClick={handleAddClick} className={'border'}>Add</button>
             <ul>
-                {list.map((item, index) => <li key={index}>{item}</li>)}
+                {list.map((item, index) => <li key={index}>
+                <input type="checkbox"/>
+                    {item}
+                    <button><i className="fas fa-trash-alt text-red-400"></i></button>
+                </li>)}
             </ul>
         </div>
     );
