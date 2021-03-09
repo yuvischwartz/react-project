@@ -8,12 +8,13 @@ export default function Todos(props) {
         <div className={'m-10 p-5 border'}>
             TODOS
             <Add />
-            <br />
+            
+            {/*<br />
             CALLES
             <Add />
             <br />
             NOTES
-           <Add />               
+            <Add />   */}            
         </div>
     );
 }
