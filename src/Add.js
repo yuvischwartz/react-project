@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
 
 export default function About(props) {
     
@@ -23,6 +24,11 @@ export default function About(props) {
         setList(newList);
     }
 
+    
+    function handleCheckClick(item) {
+        const className = clsx({"bg-red-500": true});
+        return <h1 className={className}>{item}</h1>;
+    }
 
     return (
         <div class={'m-10 p-5 border'}> 
@@ -33,7 +39,7 @@ export default function About(props) {
 
             <ul>
                 {list.map((item, index) => <li key={index}>
-                <input type="checkbox"/>
+                    <input type="checkbox" onClick={()=>handleCheckClick(item)} />
                     {item} <button type="button" onClick={() => handleRemoveClick(item.id)}>Remove</button> 
                 </li>)}
             </ul>

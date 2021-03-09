@@ -44,6 +44,10 @@ Base Styles
 color:white;
 }
 
+.isComplit{
+  color:red;
+  background-color: blue;
+}
 
 
 /***************************
