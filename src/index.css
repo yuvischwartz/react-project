@@ -21,6 +21,18 @@ Base Styles
 ****************************
 ***************************/
 
+/* Change all elements to use border-box */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body , html{
+    height: 100%;
+}
+
 :root {
   --pink: #ff99c8;
   --yellow: #fcf6bd;
@@ -28,7 +40,7 @@ Base Styles
   --blue: #a9def9;
   --purple: #e4c1f9;
 }
-
+/** NavBar **/
 .logo{
   font-family: 'Livvic', sans-serif;
   font-size:30px;
@@ -44,17 +56,52 @@ Base Styles
 color:white;
 }
 
-.isComplit{
-  color:red;
-  background-color: blue;
+.title{
+  font-family: 'Livvic', sans-serif;
+  font-weight: bold;
+  font-size:35px;
+  text-align: center;
+  color: black;
 }
-
 
 /***************************
 ****************************
 Layout Styles
 ****************************
 ***************************/
+
+/**TODO**/
+.container1{
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 3fr 1fr; 
+  grid-template-rows: 30vh 30vh 20vh;
+  text-align: center; 
+  
+}
+
+.containerTodos{
+  grid-column:1/2;
+  grid-row: 1/3;
+  background-color: var(--pink);
+}
+
+.containerP{
+  grid-column:2/3;
+  grid-row: 1/2;
+  background-color: var(--blue);
+}
+
+.containerCalles{
+  grid-column:2/3;
+  grid-row: 2/3;
+  background-color: var(--green);
+}
+.containerNotes{
+  grid-column:1/3;
+  grid-row: 3/4;
+  background-color: var(--yellow);
+}
 
 
 
