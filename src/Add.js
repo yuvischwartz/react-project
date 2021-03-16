@@ -7,9 +7,7 @@ export default function Add(props) {
     
     const [input, setInput] = useState("");
     const [list, setList] = useState([]);
-    const [isChecked, setIsChecked] = useState(false);
     const [currentTab, setCurrentTab] = useState('all');
-    const [status, setStatus] = useState('active');
     
    
     function handleAddClick(props) {      
@@ -91,7 +89,7 @@ export default function Add(props) {
                 <ul>
                     {list.map((item, index) =>
                         <li key={index} className={'border-b border-gray-400 p-1'}>
-                            <button className={item.status === 'completed' ? 'float-left fas fa-square text-green-300' : 'float-left far fa-square'}
+                            <button className={item.status === 'completed' ? 'float-left fas fa-square text-blue-400' : 'float-left far fa-square'}
                             onClick={() => handleImageChangeClick(item.status,item.id)}></button>
                             {/*<input className={'float-left'} type="checkbox" value={input} onChange={event=>setIsChecked(!isChecked ? setIsChecked(true): setIsChecked(false))}/>&nbsp;*/}
                             <span className={'text-gray-600 text-sm'}
