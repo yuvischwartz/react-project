@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import clsx from "clsx";
 import TodoItem from "./Todo-item.js"
 import Show from "./Show.js"
@@ -8,6 +8,14 @@ export default function Add(props) {
     const [input, setInput] = useState("");
     const [list, setList] = useState([]);
     const [currentTab, setCurrentTab] = useState('all');
+    const [toggle, setToggle] = useState(false);
+    
+    useEffect(() => {
+        if (toggle) {
+            setToggle(false);
+        }
+
+    },[toggle])
     
    
     function handleAddClick(props) {      
@@ -25,37 +33,21 @@ export default function Add(props) {
         setList(list.filter(item => item.id !== id));
     }
     
-    function handleImageChangeClick(status,id) {
-        setList(list.map(item => {
-            if (item.id === id) {
+    function handleImageChangeClick(it) {
+    
+        let listCopy = list;
+        listCopy.map(item => {
+            if (item.id === it.id) {
                 if (item.status === 'active') {
-                    return { ...item, status: 'completed' };
+                    item.status = 'completed';
                 } else {
-                    return { ...item, status: 'active' };
+                    item.status = 'active';
                 }
             }
-        }))
-       
-        
-        {/*else {
-            status = 'active';
-            setIsChecked(true);
-        }*/}
-        
-        {/*if (isChecked) {
-            setIsChecked(false);
-        } else {
-            setIsChecked(true);
-            
-        }
-        
-        if (status === 'active') {
-            setStatus('complited');
-        } else {
-            setStatus('active');
-      }
-      */}
-        
+        })
+        setToggle(true);
+        setList(listCopy);
+        console.log(listCopy);
     }
     return (
         <div> 
@@ -87,20 +79,13 @@ export default function Add(props) {
                 className={'add-btn btn inline-block border pt-1 pb-1 pr-3 pl-3 rounded cursor-pointer text-sm text-white bg-purple-400'}>Add</button>
 
           
-            
-            {list.length > 0 && <div className={'bg-blue-50 p-2 rounded m-3 p-5 text-sm'}>
+        {JSON.stringify(list)}
+            {list.length > 0 && !toggle && <div className={'bg-blue-50 p-2 rounded m-3 p-5 text-sm'}>
                 <ul>
-                    {list.map((item, index) =>
-                        <li key={index} className={'border-b border-gray-400 p-1'}>
-                            <button className={item.status === 'completed' ? 'float-left fas fa-square text-blue-400' : 'float-left far fa-square'}
-                            onClick={() => handleImageChangeClick(item.status,item.id)}></button>
-                            {/*<input className={'float-left'} type="checkbox" value={input} onChange={event=>setIsChecked(!isChecked ? setIsChecked(true): setIsChecked(false))}/>&nbsp;*/}
-                            <span className={'text-gray-600 text-sm'}
-                                style={{ textDecoration: item.status === 'completed' ? "line-through" : "none"}}>{item.str}</span>
-                            <button type="button" className={'float-right'} onClick={() => handleRemoveClick(item.id)}>
-                                <i class="fas fa-times text-red-400"></i></button> 
-                            <button className={'float-right text-sm text-yellow-400 fab fa-product-hunt'}></button>
-                        </li>)}
+                    {list.map((item, index) => {
+                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
+
+                    })}
                 </ul>
             </div>}
         
