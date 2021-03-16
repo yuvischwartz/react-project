@@ -65,14 +65,17 @@ export default function Add(props) {
         <div>
             <button onClick={() => {
                     setCurrentTab('all');
+                    setList(list.filter(item => item.status === 'completed' || item.status === 'active'));
             }} className={currentTab == 'all' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400'}>All</button>&nbsp;&nbsp;
             
             <button onClick={() => {
-                setCurrentTab('active');
+                    setCurrentTab('active');
+                    setList(list.filter(item => item.status === 'active'));
             }} className={currentTab == 'active' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Active</button>&nbsp;&nbsp;
             
             <button onClick={() => {
-                setCurrentTab('completed');
+                    setCurrentTab('completed');
+                    setList(list.filter(item => item.status === 'completed'));
             }} className={currentTab == 'completed' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Completed</button>&nbsp;&nbsp;
         </div>
             
@@ -95,7 +98,8 @@ export default function Add(props) {
                             <span className={'text-gray-600 text-sm'}
                                 style={{ textDecoration: item.status === 'completed' ? "line-through" : "none"}}>{item.str}</span>
                             <button type="button" className={'float-right'} onClick={() => handleRemoveClick(item.id)}>
-                            <i class="fas fa-times text-red-400"></i></button>  
+                                <i class="fas fa-times text-red-400"></i></button> 
+                            <button className={'float-right text-sm text-yellow-400 fab fa-product-hunt'}></button>
                         </li>)}
                 </ul>
             </div>}
