@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(229, 231, 235);
 }
 
 code {
@@ -13,7 +14,9 @@ code {
 }
 /*font-family: 'Livvic', sans-serif;
 font-family: 'Ribeye', cursive;
-font-family: 'Yanone Kaffeesatz', sans-serif;*/
+font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Quicksand', sans-serif;
+font-family: 'RocknRoll One', sans-serif;*/
 
 /***************************
 ****************************
@@ -34,48 +37,104 @@ body , html{
 }
 
 :root {
-  --pink: #ff99c8;
-  --yellow: #fcf6bd;
-  --green: #d0f4de;
-  --blue: #a9def9;
-  --purple: #e4c1f9;
+  --pink: #f15bb5;
+  --yellow: #fee440;
+  --green: #00f5d4;
+  --blue: #00bbf9;
+  --purple: #9b5de5;
 }
 /** NavBar **/
+.nav-items:hover{
+  color: gray;
+  border-bottom: 1.5px solid var(--green);
+}
+
 .logo{
-  font-family: 'Livvic', sans-serif;
   font-size:30px;
   font-weight: bold;
+  color: black;
+  font-family: 'RocknRoll One', sans-serif;
   
 
 }
 .nav-items{
-  font-family: 'Livvic', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: normal;
+  
   
 }
 .logo-icon{
-color:white;
+color:var(--blue);
+}
+.input-bar{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: lighter;
+  width: 80%;
+  padding: 2px 2px;  
+  color: black;
+  text-align: center;
+  font-size: 1rem;
+}
+.btn{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: lighter;
+  padding: 4px 10px; 
+  text-align: center;
+  font-size: 1rem;
+  border: none;
+}
+.add-btn{
+  margin-left: 5px;
+  background-color:var(--blue);  
 }
 
 .title{
-  font-family: 'Livvic', sans-serif;
-  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
   font-size:35px;
   text-align: center;
-  color: black;
+  margin: 15px;
+  font-weight: lighter;
 }
+
+.sub-title{
+  font-family: 'Quicksand', sans-serif;
+  font-size:20px;
+  font-weight: lighter;
+  text-align:center;
+  margin: 10px;
+  color:black;
+}
+
+p{
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  color:gray;
+  font-size:15px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 
 /***************************
 ****************************
 Layout Styles
 ****************************
 ***************************/
-
+/**Main Layout**/
+container-main{
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 3fr 1fr; 
+  grid-template-rows: 30vh 30vh 20vh;
+  text-align: center; 
+  background-color: sienna;
+}
 /**TODO**/
 .container1{
   display: grid;
   height: 80vh;
   grid-template-columns: 3fr 1fr; 
-  grid-template-rows: 30vh 30vh 20vh;
+  grid-template-rows: 40vh 40vh;
   text-align: center; 
   
 }
@@ -83,25 +142,21 @@ Layout Styles
 .containerTodos{
   grid-column:1/2;
   grid-row: 1/3;
-  background-color: var(--pink);
+  background-color: white;
 }
 
 .containerP{
   grid-column:2/3;
   grid-row: 1/2;
-  background-color: var(--blue);
+  background-color: white;
 }
 
 .containerCalles{
   grid-column:2/3;
   grid-row: 2/3;
-  background-color: var(--green);
+  background-color: white;
 }
-.containerNotes{
-  grid-column:1/3;
-  grid-row: 3/4;
-  background-color: var(--yellow);
-}
+
 
 
 
@@ -149,6 +204,8 @@ X-Small devices (mobile phones, less than 640px)
 
 @media (min-width: 640px){
  
-
+/*.nav-items{
+  float: right;
+}*/
 
 }

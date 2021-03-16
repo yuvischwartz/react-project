@@ -5,28 +5,25 @@ import Add from "./Add.js"
 export default function Todos(props) {
 
     return (
-        <div className={'container1  p-5 border'}>
+        <>
+        <div className={'container1 p-5'}>
             <div className={'containerTodos'}>
-                    <h1 className='title'>Today's Tasks</h1>
+                    <h1 className='title text-gray-700'>Today's Tasks</h1>
+                    
                 <Add />
             </div>
 
-            <div className={'containerP'}>
-                    <h1 className='title'>Priority</h1>
+            <div className={'containerP border'}>
+                    <h1 className='sub-title text-gray-900'>Priority</h1>
                     
             </div>   
 
-            <div className={'containerCalles'}>
-                    <h1 className='title'>Calles</h1>
+            <div className={'containerCalles border'}>
+                    <h1 className='sub-title'>Calles</h1>
                     
             </div>
             
-            <div className={'containerNotes'}>
-                    <h1 className='title'>Notes</h1>
-                    
             </div>
-
-            
-        </div>
+            </>
     );
 }
