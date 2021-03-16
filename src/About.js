@@ -3,7 +3,23 @@ import React, { useState } from "react";
 
 export default function About(props) {
     return (
-        <div class={'m-10 p-5 bg-blue-400 rounded'}>
+        <div className={'container1 bg-white m-10 p-5'}>
+            <h1 className={'title'}>- Our Mission -</h1>&nbsp;&nbsp;
+            <p>To give you the confidence that everything’s organized and accounted for,</p>
+            <p>so you can make progress on the things that are important to you.</p>&nbsp;
+            <h1 className={'title'}>About</h1>&nbsp;&nbsp;
+            <p>Using simple to do lists within ClickUp brings a clear outline to your tasks in the app by</p> 
+            <p>letting you instruct an assignee on how to complete the task at hand.</p>
+            <p>Adding a checklist to a task allows team members to spend more time focusing on the creative</p>
+            <p>aspect of tasks as well as celebrate the small wins! Spend time focusing on the</p>
+            <p>creative aspect of tasks as well as celebrate the small wins!</p>
+             
+        </div>  
+    );
+
+}
+
+{/*<div class={'container-main p-5 m-10 rounded container mx-auto bg-blue-400 h-auto'}>
             <h1 className={'title'}>What makes a great to-do list app?</h1>
             
             <div className={'text-center'}>
@@ -22,6 +38,6 @@ export default function About(props) {
                 Sync between every platform you use. Which platforms will depend on what you personally use, but we didn't consider anything that doesn't sync between desktop and mobile.
                 </p>
             </div>
-        </div>
-    );
-}
+            </div>}
+
+*/}

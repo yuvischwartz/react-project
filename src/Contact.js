@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 export default function Contact(props) {
     return (
-        <div class={'m-10 p-5 border'}>
+        <div className={'container1 bg-white m-10 p-5'}>
             Contact page
         </div>
     );
