@@ -9,6 +9,8 @@ export default function Add(props) {
     const [list, setList] = useState([]);
     const [currentTab, setCurrentTab] = useState('all');
     const [toggle, setToggle] = useState(false);
+    const [completedList, setCompletedList] = useState(list);
+    const [activeList, setActiveList] = useState(list);
     
     useEffect(() => {
         if (toggle) {
@@ -17,7 +19,11 @@ export default function Add(props) {
 
     },[toggle])
     
-   
+    function setLists() {
+        setActiveList(list.filter(item => item.status === 'active'));
+        setCompletedList(list.filter(item => item.status === 'completed'));
+    }
+    
     function handleAddClick(props) {      
             if (input.trim().length > 0)  {
                 setList([...list, {
@@ -26,6 +32,7 @@ export default function Add(props) {
                     id: list.length + 1,
                 }]);
                 setInput("");
+                setLists(props.list);
             }   
     }
     
@@ -47,27 +54,30 @@ export default function Add(props) {
         })
         setToggle(true);
         setList(listCopy);
+        setLists(list);
         console.log(listCopy);
     }
+
+
     return (
         <div> 
-            {/*putting the show here}
-            {<Show />} */}
 
-        <div>
+            <div>
+                {/* {JSON.stringify(list)}
+                {JSON.stringify(allList)}
+                {JSON.stringify(activeList)}
+                {JSON.stringify(completedList)} */}
+
             <button onClick={() => {
-                    setCurrentTab('all');
-                    setList(list.filter(item => item.status === 'completed' || item.status === 'active'));
-            }} className={currentTab == 'all' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400'}>All</button>&nbsp;&nbsp;
+                   setCurrentTab('all'); 
+            }} className={currentTab === 'all' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400'}>All</button>&nbsp;&nbsp;
             
             <button onClick={() => {
                     setCurrentTab('active');
-                    setList(list.filter(item => item.status === 'active'));
             }} className={currentTab == 'active' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Active</button>&nbsp;&nbsp;
             
             <button onClick={() => {
                     setCurrentTab('completed');
-                    setList(list.filter(item => item.status === 'completed'));
             }} className={currentTab == 'completed' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Completed</button>&nbsp;&nbsp;
         </div>
             
@@ -78,9 +88,8 @@ export default function Add(props) {
             <button onClick={() => handleAddClick(props)}
                 className={'add-btn btn inline-block border pt-1 pb-1 pr-3 pl-3 rounded cursor-pointer text-sm text-white bg-purple-400'}>Add</button>
 
-          
-        {JSON.stringify(list)}
-            {list.length > 0 && !toggle && <div className={'bg-blue-50 p-2 rounded m-3 p-5 text-sm'}>
+        
+            {list.length > 0 && !toggle && currentTab === 'all' && <div className={'bg-gray-100 p-2 rounded m-3 p-5 text-sm'}>
                 <ul>
                     {list.map((item, index) => {
                         return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
@@ -88,29 +97,26 @@ export default function Add(props) {
                     })}
                 </ul>
             </div>}
+
+
+            {list.length > 0 && activeList.length > 0 && !toggle && currentTab === 'active' && <div className={'bg-red-200 p-2 rounded m-3 p-5 text-sm'}>
+                <ul>
+                    {activeList.map((item, index) => {
+                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
+
+                    })}
+                </ul>
+            </div>}
         
-                
+            {list.length > 0 && completedList.length > 0 && !toggle && currentTab === 'completed' && <div className={'bg-green-100 p-2 rounded m-3 p-5 text-sm'}>
+                <ul>
+                    {completedList.map((item, index) => {
+                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
+
+                    })}
+                </ul>
+            </div>} 
         
         </div>
     );
 }
-{/*checked={item.isChecked}*/}
-{/**
-
-    
-            {list.map((item, index) => {
-                        return <TodoItem item={item} key={index}/>
-                    }) */}
-
-                      {/*<ul>
-                {list.map((item, index) => <li key={index}>
-                    <input type="checkbox" onClick={()=>handleCheckClick(item)} />
-                    {item} <button type="button" onClick={() => handleRemoveClick(item.id)}>Remove</button> 
-                </li>)}
-            </ul>*/}
-
-
-                 {/*} const newList = list.filter((item) => item.id !== id);
-    setList(newList);*/}
-
-     {/*const [currentTab, setCurrentTab] = useState('all');*/}
