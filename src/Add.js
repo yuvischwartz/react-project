@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
-import clsx from "clsx";
-import TodoItem from "./Todo-item.js"
+// import clsx from "clsx";
+// import TodoItem from "./Todo-item.js"
 import Show from "./Show.js"
+import Priority from "./Priority.js"
+import Calls from "./Calls.js";
 
 export default function Add(props) {
     
@@ -11,7 +13,9 @@ export default function Add(props) {
     const [toggle, setToggle] = useState(false);
     const [completedList, setCompletedList] = useState(list);
     const [activeList, setActiveList] = useState(list);
-    
+    const [priority, setPriority] = useState([]);
+    const [calls, setCalls] = useState([]);
+
     useEffect(() => {
         if (toggle) {
             setToggle(false);
@@ -58,65 +62,150 @@ export default function Add(props) {
         console.log(listCopy);
     }
 
+    // PRIORITY
+    function handlePriorityClick(it){
+        
+        list.map((item, index) => {
+            setPriority([...priority, {
+                str: item.str,
+                status: item.status,
+                id: item.id,
+            }])
+            handleRemoveClick(item.id); 
+        });
+            
+    }
 
+    function handleRemovePriorityClick(id) {
+        setPriority(priority.filter(item => item.id !== id));
+    }
+
+    // CALLS
+    function handleCallsClick(it){
+        
+        list.map((item, index) => {
+            setCalls([...calls, {
+                str: item.str,
+                status: item.status,
+                id: item.id,
+            }])
+            handleRemoveClick(item.id); 
+        });
+            
+    }
+
+    function handleRemoveCallsClick(id) {
+        setCalls(calls.filter(item => item.id !== id));
+    }
+        
+    
     return (
-        <div> 
-
-            <div>
-                {/* {JSON.stringify(list)}
-                {JSON.stringify(allList)}
-                {JSON.stringify(activeList)}
-                {JSON.stringify(completedList)} */}
-
-            <button onClick={() => {
-                   setCurrentTab('all'); 
-            }} className={currentTab === 'all' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400'}>All</button>&nbsp;&nbsp;
+        <div className={'container1 p-5'}> 
             
-            <button onClick={() => {
-                    setCurrentTab('active');
-            }} className={currentTab == 'active' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Active</button>&nbsp;&nbsp;
+            {/* TODOS */}
+            <div className={'containerTodos'}>
+                <h1 className='title text-gray-700'>Today's Tasks</h1>
+             
+
+                <div>
+                    <button onClick={() => {
+                        setCurrentTab('all'); 
+                    }} className={currentTab === 'all' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400'}>All</button>&nbsp;&nbsp;
+                    
+                    <button onClick={() => {
+                            setCurrentTab('active');
+                    }} className={currentTab == 'active' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Active</button>&nbsp;&nbsp;
+                    
+                    <button onClick={() => {
+                            setCurrentTab('completed');
+                    }} className={currentTab == 'completed' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Completed</button>&nbsp;&nbsp;
+                </div>
+                
+
+
+                <input type="text" value={input} onChange={event=>setInput(event.target.value)}
+                    className={'input-bar border border-gray-400 inline-block rounded text-l mt-3'}/>
+                <button onClick={() => handleAddClick(props)}
+                    className={'add-btn btn inline-block border pt-1 pb-1 pr-3 pl-3 rounded cursor-pointer text-sm text-white bg-purple-400'}>Add</button>
+
+                {/* ALL TAB */}
+                {list.length > 0 && !toggle && currentTab === 'all' &&
+                    <div className={'bg-gray-100 p-2 rounded m-3 p-5 text-sm'}>
+                        <ul>
+                            {list.map((item, index) => {
+                                return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick}
+                                    handlePriorityClick={handlePriorityClick} handleCallsClick={handleCallsClick}/>
+
+                            })}
+                        </ul>
+                    </div>}
+
+                {/* ACTIVE TAB */}
+                {list.length > 0 && activeList.length > 0 && !toggle && currentTab === 'active' &&
+                    <div className={'bg-red-200 p-2 rounded m-3 p-5 text-sm'}>
+                        <ul>
+                            {activeList.map((item, index) => {
+                                return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick}
+                                handlePriorityClick={handlePriorityClick} handleCallsClick={handleCallsClick} />
+
+                            })}
+                        </ul>
+                    </div>}
             
-            <button onClick={() => {
-                    setCurrentTab('completed');
-            }} className={currentTab == 'completed' ? 'btn rounded cursor-pointer text-sm text-white bg-gray-500 ' : 'btn rounded cursor-pointer text-sm text-white bg-gray-400 '}>Completed</button>&nbsp;&nbsp;
-        </div>
+                {/* COMPLETED TAB */}
+                {list.length > 0 && completedList.length > 0 && !toggle && currentTab === 'completed' &&
+                    <div className={'bg-green-100 p-2 rounded m-3 p-5 text-sm'}>
+                        <ul>
+                            {completedList.map((item, index) => {
+                                return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick}
+                                    handleRemoveClick={handleRemoveClick} handlePriorityClick={handlePriorityClick} handleCallsClick={handleCallsClick}/>
+
+                            })}
+                        </ul>
+                    </div>} 
+                </div>
             
+            {/* PRIORITY */}
+            <div className={'containerP border'}>
+                <h1 className='sub-title text-gray-900'>Priority</h1>
+                
+                {priority.length > 0 &&
+                <div className={'bg-yellow-200 p-2 rounded m-3 p-5 text-sm'}>
+                    <ul>
+                        {priority.map((item, index) => {
+                            
+                            return <Priority key={index} item={item} handleRemovePriorityClick={handleRemovePriorityClick} />
 
 
-            <input type="text" value={input} onChange={event=>setInput(event.target.value)}
-                className={'input-bar border border-gray-400 inline-block rounded text-l mt-3'}/>
-            <button onClick={() => handleAddClick(props)}
-                className={'add-btn btn inline-block border pt-1 pb-1 pr-3 pl-3 rounded cursor-pointer text-sm text-white bg-purple-400'}>Add</button>
+                        })}
+                    </ul>
+                </div>}
+            </div>
 
-        
-            {list.length > 0 && !toggle && currentTab === 'all' && <div className={'bg-gray-100 p-2 rounded m-3 p-5 text-sm'}>
-                <ul>
-                    {list.map((item, index) => {
-                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
+            {/* CALLES */}
+            <div className={'containerCalles border'}>
+                <h1 className='sub-title'>Calles</h1>
+                
+                {calls.length > 0 &&
+                <div className={'bg-green-200 p-2 rounded m-3 p-5 text-sm'}>
+                    <ul>
+                        {calls.map((item, index) => {
+                            
+                            return <Calls key={index} item={item} handleRemoveCallsClick={handleRemoveCallsClick} />
 
-                    })}
-                </ul>
-            </div>}
 
+                        })}
+                    </ul>
+                </div>}
+                    
+            </div>
 
-            {list.length > 0 && activeList.length > 0 && !toggle && currentTab === 'active' && <div className={'bg-red-200 p-2 rounded m-3 p-5 text-sm'}>
-                <ul>
-                    {activeList.map((item, index) => {
-                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
-
-                    })}
-                </ul>
-            </div>}
-        
-            {list.length > 0 && completedList.length > 0 && !toggle && currentTab === 'completed' && <div className={'bg-green-100 p-2 rounded m-3 p-5 text-sm'}>
-                <ul>
-                    {completedList.map((item, index) => {
-                        return <Show key={index} item={item} handleImageChangeClick={handleImageChangeClick} handleRemoveClick={handleRemoveClick} />
-
-                    })}
-                </ul>
-            </div>} 
-        
         </div>
     );
 }
+
+{/* {JSON.stringify(list)}
+                    {JSON.stringify(allList)}
+                    {JSON.stringify(activeList)}
+                    {JSON.stringify(completedList)}
+                    {JSON.stringify(priority)} */}

@@ -13,6 +13,8 @@ import {
 import About from "./About.js";
 import Todos from "./Todos.js";
 import Contact from "./Contact.js";
+import Add from './Add';
+
 
 function Home() {
   return (
@@ -53,7 +55,7 @@ function App() {
               <About />
             </Route>
             <Route path="/todos">
-              <Todos />
+              <Add />
             </Route>
             <Route path="/contact">
               <Contact />

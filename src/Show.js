@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export default function About(props) {
 
-    const [currentTab, setCurrentTab] = useState('all');
+    
 
     return (
     <>
@@ -15,9 +15,9 @@ export default function About(props) {
                                 style={{ textDecoration: props.item.status === 'completed' ? "line-through" : "none"}}>{props.item.str}</span>
                             <button type="button" className={'float-right'} onClick={() => props.handleRemoveClick(props.item.id)}>
                                 <i class="fas fa-times text-red-400 text-lg"></i>&nbsp;&nbsp;</button> 
-                            <button type="button" className={'float-right'}>
+                            <button type="button" className={'float-right'} onClick={() => props.handlePriorityClick(props.item.id)}>
                             <i class="fas fa-exclamation text-yellow-500 text-sm">&nbsp;&nbsp;</i></button> 
-                            <button type="button" className={'float-right'}>
+                            <button type="button" className={'float-right'} onClick={() => props.handleCallsClick(props.item.id)}>
                             <i class="fas fa-phone text-green-500 text-sm">&nbsp;&nbsp;</i></button>
                 
         </li>
